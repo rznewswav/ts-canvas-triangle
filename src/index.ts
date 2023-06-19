@@ -72,10 +72,15 @@ while(!isInsideTriangle(currentPoint)) {
 }
 const startingPoint: Vertex = [...currentPoint]
 
-ctx.beginPath();
-ctx.arc(startingPoint[0]-1, startingPoint[1]-1, 2, 0, 2 * Math.PI);
-ctx.fillStyle = "maroon"
-ctx.fill();
+function drawStartingPoint() {
+    if (!ctx) throw new Error()
+    ctx.beginPath();
+    ctx.arc(startingPoint[0] - 2, startingPoint[1] - 2, 4, 0, 2 * Math.PI);
+    ctx.fillStyle = "maroon"
+    ctx.fill();
+}
+
+drawStartingPoint();
 
 const points = 100000
 let currentPoints = 0
@@ -96,10 +101,8 @@ function drawPoint() {
         currentPoints += 1
     }
 
-    ctx.beginPath();
-    ctx.arc(startingPoint[0]-1, startingPoint[1]-1, 2, 0, 2 * Math.PI);
-    ctx.fillStyle = "maroon"
-    ctx.fill();
+    drawStartingPoint();
+
     let counterDOM = document.getElementById("counter");
     if (counterDOM) {
         counterDOM.textContent = `Iterations: ${currentPoints} points drawn`
