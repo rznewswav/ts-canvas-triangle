@@ -1,0 +1,18 @@
+{
+  "name": "ts-canvas-triangle",
+  "version": "1.0.0",
+  "dependencies": {
+    "concurrently": "^8.1.0",
+    "esbuild": "^0.17.19",
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.1.3"
+  },
+  "scripts": {
+    "start": "mkdir -p dist && concurrently -n \"script,server\" \"npm run build:script\" \"npm run serve\"",
+    "build:script": "esbuild src/index.ts --bundle --watch --outfile=public/index.js --minify",
+    "serve": "live-server public"
+  }
+}
